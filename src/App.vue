@@ -1,9 +1,3 @@
-<!-- **yapılacaklar** -->
-<!-- deleteCity i çalışır hale getir(filter, id...) -->
-<!-- şehir isimlerinin yanındaki province ları sil(arraya ekleyip) --> 
-<!-- iconların width, padding ayarla -->
-
-
 <template>
   <div id="app">
     <header>
@@ -11,39 +5,61 @@
     </header>
     <WeatherInput @results_emit="addToCities" />
     <div class="date-box">
-        <div class="date">{{ dateBuilder() }}</div>
+      <div class="date">{{ dateBuilder() }}</div>
     </div>
     <WeatherCityList :city_list="cities" @deleteCity="deleteCity" />
   </div>
-  
 </template>
 
 <script>
-import WeatherInput from './components/WeatherInput.vue';
-import WeatherCityList from './components/WeatherCityList.vue';
+import WeatherInput from "./components/WeatherInput.vue";
+import WeatherCityList from "./components/WeatherCityList.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      cities: []
-    }
+      cities: [],
+    };
   },
   components: {
-    "WeatherInput": WeatherInput,
-    "WeatherCityList": WeatherCityList,
+    WeatherInput: WeatherInput,
+    WeatherCityList: WeatherCityList,
   },
   methods: {
     addToCities(results) {
-      this.cities.push(results)
+      this.cities.push(results);
     },
-    deleteCity() {
-
+    deleteCity(cityToBeDeleted) {
+      this.cities = this.cities.filter(function (city) {
+        return city.id != cityToBeDeleted;
+      });
     },
     dateBuilder() {
-      let d = new Date;
-      let months =  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      let d = new Date();
+      let months = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ];
+      let days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
 
       let day = days[d.getDay()];
       let date = d.getDate();
@@ -51,15 +67,14 @@ export default {
       let year = d.getFullYear();
 
       return `${day}, ${date} ${month} ${year}`;
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&family=Roboto:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&family=Roboto:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@900&display=swap");
 
 * {
   padding: 0;
@@ -68,7 +83,7 @@ export default {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 #app {
@@ -78,17 +93,16 @@ body {
 }
 
 h1 {
-    text-align: start;
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 36px;
-    font-weight: 700;
-    color: black;
-    padding-left: 16px;
+  text-align: start;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: black;
+  padding-left: 16px;
 }
 
 .date-box {
   padding-bottom: 60px;
-  
 }
 
 .date-box .date {
@@ -97,6 +111,5 @@ h1 {
   font-size: 36px;
   padding-left: 25px;
   font-weight: 600;
-  
 }
 </style>

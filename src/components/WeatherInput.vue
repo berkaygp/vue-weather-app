@@ -1,52 +1,47 @@
 <template>
   <div class="search-box">
-    <input id="input-city" type="text" class="search-bar" placeholder="Search a city" v-model="query"
-          @keypress.enter="addCity">
-    <button id="add-city" v-on:click="addCity">+</button>  
+    <input
+      id="input-city"
+      type="text"
+      class="search-bar"
+      placeholder="Search a city"
+      v-model="query"
+      @keypress.enter="addCity"
+    />
+    <button id="add-city" v-on:click="addCity">+</button>
   </div>
 </template>
 
 <script>
-
-
 export default {
   data() {
-      return {
-        api_key: '72e1943fa5a68f4a887bbfef71dc7b1a',
-        url_base: 'https://api.openweathermap.org/data/2.5/',
-        query: '',
-        weather: {}
-      }
-  },
-  components: {
-
+    return {
+      api_key: "72e1943fa5a68f4a887bbfef71dc7b1a",
+      url_base: "https://api.openweathermap.org/data/2.5/",
+      query: "",
+      weather: {},
+    };
   },
   methods: {
     addCity() {
-      /* this.cities.push({id: this.cities.length+1, label: this.query}) */
-      this.fetchWeather()
-      this.query= ''
+      this.fetchWeather();
+      this.query = "";
     },
-    deleteCity() {
-      
-    },    
-    async fetchWeather () {
-        const res = await fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`) 
-        const result = await res.json()
-        this.setResults(result)
-      
+    async fetchWeather() {
+      const res = await fetch(
+        `${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`
+      );
+      const result = await res.json();
+      this.setResults(result);
     },
-    setResults (results) {
-      //this.cities.push(results) 
-      this.$emit('results_emit', results)
-    }
-  }
-}
-
+    setResults(results) {
+      this.$emit("results_emit", results);
+    },
+  },
+};
 </script>
 
 <style>
-
 .search-box {
   width: 100%;
   padding: 12px;

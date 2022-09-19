@@ -1,52 +1,79 @@
 <template>
-    <div class="wrap">
-        <div class="weather-box" v-for="city in city_list" :key="city.id">
-            <div class="location">
-                {{ city.name }} 
-                <i class="pi pi-times-circle" @click="deleteCity(city, city.id)"></i>
-            </div>
-            <div class="temp">{{ Math.round(city.main.temp) }}°c</div>
-            <div class="weather">{{ city.weather[0].main }}</div>
-            <div class="gif">
-                 <div v-if="city.weather[0].main === 'Clouds'">
-                    <img class="cloudIcon" :src="'https://i.gifer.com/origin/0d/0d6cf5b4980702758a616a14bed86e3a_w200.gif'" width="125"/>
-                </div>
-                <div v-else-if="city.weather[0].main === 'Clear'">
-                    <img class="sunIcon" :src="'https://i.pinimg.com/originals/90/85/bb/9085bb2580eee46db433164fdcca9500.gif'"  width="150"/>
-                </div>
-                <div v-else-if="city.weather[0].main === 'Thunderstorm'">
-                    <img class="thunderstormIcon" :src="'https://i.giphy.com/media/ln1W55MmaidLSj7wA5/giphy.webp'" width="200"/>
-                </div>
-                <div v-else-if="city.weather[0].main === 'Mist'">
-                    <img class="mistIcon" :src="'https://icon-library.com/images/fog-icon-png/fog-icon-png-5.jpg'" width="130" />
-                </div>
-                <div v-else-if="city.weather[0].main === 'Snow'">
-                    <img class="snowIcon" :src="'https://thumbs.gfycat.com/WellmadeSameBeaver-max-1mb.gif '"  width="120"/>
-                </div>              
-                <div v-else-if="city.weather[0].main === 'Rain'">
-                    <img class="rainIcon" :src="'https://monophy.com/media/Su0pXI7m9Q8TvQuf8s/monophy.gif'" width="167"/>
-                </div>              
-            </div>
-       </div>
+  <div class="wrap">
+    <div class="weather-box" v-for="city in city_list" :key="city.id">
+      <div class="location">
+        {{ shortenCityName(city.name) }}
+        <i class="pi pi-times-circle" @click="deleteCity(city)"></i>
+      </div>
+      <div class="temp">{{ Math.round(city.main.temp) }}°c</div>
+      <div class="weather">{{ city.weather[0].main }}</div>
+      <div class="gif">
+        <div v-if="city.weather[0].main === 'Clouds'">
+          <img
+            class="cloudIcon"
+            :src="'https://i.gifer.com/origin/0d/0d6cf5b4980702758a616a14bed86e3a_w200.gif'"
+            width="125"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Clear'">
+          <img
+            class="sunIcon"
+            :src="'https://i.pinimg.com/originals/90/85/bb/9085bb2580eee46db433164fdcca9500.gif'"
+            width="150"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Thunderstorm'">
+          <img
+            class="thunderstormIcon"
+            :src="'https://i.giphy.com/media/ln1W55MmaidLSj7wA5/giphy.webp'"
+            width="200"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Mist'">
+          <img
+            class="mistIcon"
+            :src="'https://icon-library.com/images/fog-icon-png/fog-icon-png-5.jpg'"
+            width="130"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Snow'">
+          <img
+            class="snowIcon"
+            :src="'https://thumbs.gfycat.com/WellmadeSameBeaver-max-1mb.gif '"
+            width="120"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Rain'">
+          <img
+            class="rainIcon"
+            :src="'https://monophy.com/media/Su0pXI7m9Q8TvQuf8s/monophy.gif'"
+            width="167"
+          />
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            weather: '',
-        }
+  data() {
+    return {
+      weather: "",
+    };
+  },
+  props: ["city_list"],
+  methods: {
+    deleteCity(city) {
+      let cityToBeDeleted = city.id;
+      this.$emit("deleteFromArray", cityToBeDeleted);
     },
-    props: ['city_list'],
-    methods: {
-        deleteCity(city, id){
-            console.log('method is working');
-            console.log(city);
-            console.log(city.id);
-        }
-    }
-}
+    shortenCityName(name) {
+      var newName = name.split(/\s/);
+      return newName[0];
+    },
+  },
+};
 </script>
 
 <style>
@@ -81,42 +108,30 @@ export default {
 }
 
 i {
-    color: red;
-    /*padding-left: 40px;*/
-    margin-left: 2rem;
-    cursor: pointer;
-    
+  color: red;
+  /*padding-left: 40px;*/
+  margin-left: 2rem;
+  cursor: pointer;
 }
 
 .location {
-    margin-left: 50px;
+  margin-left: 50px;
 }
 
 .wrap {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .cloudIcon {
-    padding-top: 35px;
+  padding-top: 35px;
 }
 
 .sunIcon {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .thunderstormIcon {
-    padding-top: 8px;
+  padding-top: 8px;
 }
-
-/* .mistIcon {
-
-}
-
-.snowIcon {
-
-}
-.rainIcon {
-
-} */
 </style>
