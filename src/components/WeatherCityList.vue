@@ -46,8 +46,22 @@
         <div v-else-if="city.weather[0].main === 'Rain'">
           <img
             class="rainIcon"
-            :src="'https://monophy.com/media/Su0pXI7m9Q8TvQuf8s/monophy.gif'"
+            :src="'https://media3.giphy.com/media/kBfL5cuu4bj4rr6GN8/giphy.gif?cid=ecf05e47vu9mlyuhcddpqat7ro1j6mwrtannuodpe436al7o&rid=giphy.gif&ct=s'"
             width="167"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Haze'">
+          <img
+            class="hazeIcon"
+            :src="'https://media4.giphy.com/media/8C7ttn5grQ3xIkwakl/giphy.gif?cid=ecf05e47ozu0tugyb0ujk6q68yrbylmo2lllmyqwllcmdrx8&rid=giphy.gif&ct=s'"
+            width="160"
+          />
+        </div>
+        <div v-else-if="city.weather[0].main === 'Smoke'">
+          <img
+            class="smokeIcon"
+            :src="'https://media4.giphy.com/media/8C7ttn5grQ3xIkwakl/giphy.gif?cid=ecf05e47ozu0tugyb0ujk6q68yrbylmo2lllmyqwllcmdrx8&rid=giphy.gif&ct=s'"
+            width="160"
           />
         </div>
       </div>
