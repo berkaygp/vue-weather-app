@@ -7,7 +7,7 @@
     <div class="date-box">
       <div class="date">{{ dateBuilder() }}</div>
     </div>
-    <WeatherCityList :city_list="cities" @deleteCity="deleteCity" />
+    <WeatherCityList :city_list="cities" @deleteFromArray="deleteCity" />
   </div>
 </template>
 
