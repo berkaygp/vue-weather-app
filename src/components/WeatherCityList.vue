@@ -40,14 +40,14 @@
           <img
             class="snowIcon"
             :src="'https://thumbs.gfycat.com/WellmadeSameBeaver-max-1mb.gif '"
-            width="120"
+            width="140"
           />
         </div>
         <div v-else-if="city.weather[0].main === 'Rain'">
           <img
             class="rainIcon"
             :src="'https://media3.giphy.com/media/kBfL5cuu4bj4rr6GN8/giphy.gif?cid=ecf05e47vu9mlyuhcddpqat7ro1j6mwrtannuodpe436al7o&rid=giphy.gif&ct=s'"
-            width="167"
+            width="160"
           />
         </div>
         <div v-else-if="city.weather[0].main === 'Haze'">
@@ -97,8 +97,8 @@ export default {
   margin: 20px;
   text-align: center;
   padding: 30px 10px;
-  max-width: 500px;
-  min-width: 400px;
+  max-width: 545px;
+  min-width: 350px;
 }
 
 .weather-box .temp {
@@ -123,7 +123,6 @@ export default {
 
 i {
   color: red;
-  /*padding-left: 40px;*/
   margin-left: 2rem;
   cursor: pointer;
 }
@@ -147,5 +146,9 @@ i {
 
 .thunderstormIcon {
   padding-top: 8px;
+}
+
+.snowIcon {
+  padding-top: 20px;
 }
 </style>
