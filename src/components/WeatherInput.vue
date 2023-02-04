@@ -73,7 +73,7 @@ button {
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.25);
   border: none;
   height: 47px;
-  padding-bottom: 1.5px;
+  padding-bottom: 3px;
   font-size: 24px;
   font-weight: bold;
   width: 10%;
